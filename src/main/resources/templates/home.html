@@ -1,0 +1,45 @@
+<html>
+<body>
+<!--{{! changing the mustache delimiter so it doesn't conflict with  }}-->
+<!--{{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}-->
+<!--{{=<% %>=}}-->
+
+<form action="/searchByName" method="get">
+    <input type="text" placeholder="Search" name="search"/>
+    <button type="submit">Search</button>
+</form>
+
+<br><br>
+
+<form action="/add-recipe" method="post">
+    <input type="text" placeholder="Name" name="name"/>
+    <select name="style">
+        <option selected disabled>Style</option>
+        <option value="italian">Italian</option>
+        <option value="german">German</option>
+        <option value="french">French</option>
+    </select>
+    <br><br>
+    <textarea name="recipe" rows="4" cols="50">
+    Recipe
+    </textarea>
+    <br><br>
+    <button type="submit">Add Recipe</button>
+</form>
+
+<a href="/">All</a>
+<a href="/?style=italian">Italian</a>
+<a href="/?style=german">German</a>
+<a href="/?style=french">French</a>
+
+<br><br>
+
+<ol>
+    {{#recipes}}
+    <li><p>{{name}}</p><br>
+        <p>{{style}}</p><br>
+        <p>{{recipe}}</p><a href="/delete?recipeID={{id}}">delete</a><p> </p><a href="/modify?recipeID={{id}}">modify</a></li>
+    {{/recipes}}
+</ol>
+</body>
+</html>
